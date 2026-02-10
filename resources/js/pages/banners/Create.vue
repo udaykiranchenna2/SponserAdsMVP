@@ -1,0 +1,128 @@
+<script setup lang="ts">
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import { index, store as storeBanner } from '@/routes/banners';
+import AppLayout from '@/layouts/AppLayout.vue';
+import Heading from '@/components/Heading.vue';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowLeft } from 'lucide-vue-next';
+import InputError from '@/components/InputError.vue';
+
+const form = useForm<{
+    title: string;
+    target_url: string;
+    link_text: string;
+    status: 'active' | 'inactive';
+    image: File | null;
+}>({
+    title: '',
+    target_url: '',
+    link_text: '',
+    status: 'active',
+    image: null,
+});
+
+const submit = () => {
+    form.post(storeBanner.url(), {
+        forceFormData: true,
+    });
+};
+
+const handleImageChange = (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    if (target.files && target.files[0]) {
+        form.image = target.files[0];
+    }
+};
+</script>
+
+<template>
+
+    <Head title="Create Banner" />
+
+    <AppLayout :breadcrumbs="[
+        { title: 'Banners', href: index.url() },
+        { title: 'Create', href: '#' },
+    ]">
+        <div class="flex h-full flex-col p-4 md:p-6 space-y-6 max-w-2xl mx-auto w-full">
+            <div class="flex items-center space-x-4">
+                <Button variant="ghost" size="icon" :as="Link" :href="index.url()">
+                    <ArrowLeft class="h-4 w-4" />
+                </Button>
+                <Heading title="Create Banner" description="Add a new banner to your system." />
+            </div>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>Banner Details</CardTitle>
+                    <CardDescription>
+                        Fill in the information below to create a new banner.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <form @submit.prevent="submit" class="space-y-6">
+                        <!-- Title -->
+                        <div class="space-y-2">
+                            <Label for="title">Title <span class="text-destructive">*</span></Label>
+                            <Input id="title" v-model="form.title" placeholder="e.g. Summer Sale 2024" required />
+                            <InputError :message="form.errors.title" />
+                        </div>
+
+                        <!-- Target URL -->
+                        <div class="space-y-2">
+                            <Label for="target_url">Target URL <span class="text-destructive">*</span></Label>
+                            <Input id="target_url" v-model="form.target_url" type="url"
+                                placeholder="https://example.com/promo" required />
+                            <InputError :message="form.errors.target_url" />
+                        </div>
+
+                        <!-- Link Text -->
+                        <div class="space-y-2">
+                            <Label for="link_text">Link Text</Label>
+                            <Input id="link_text" v-model="form.link_text" placeholder="e.g. Click Here" />
+                            <InputError :message="form.errors.link_text" />
+                        </div>
+
+                        <!-- Status -->
+                        <div class="space-y-2">
+                            <Label for="status">Status <span class="text-destructive">*</span></Label>
+                            <Select v-model="form.status" default-value="active">
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="active">Active</SelectItem>
+                                    <SelectItem value="inactive">Inactive</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <InputError :message="form.errors.status" />
+                        </div>
+
+                        <!-- Image -->
+                        <div class="space-y-2">
+                            <Label for="image">Banner Image <span class="text-destructive">*</span></Label>
+                            <Input id="image" type="file" accept="image/*" @change="handleImageChange" required />
+                            <p class="text-[0.8rem] text-muted-foreground">
+                                Upload a banner image (JPG, PNG, WebP). Max 5MB.
+                            </p>
+                            <progress v-if="form.progress" :value="form.progress.percentage" max="100"
+                                class="w-full h-2">
+                                {{ form.progress.percentage }}%
+                            </progress>
+                            <InputError :message="form.errors.image" />
+                        </div>
+
+                        <div class="flex justify-end pt-4">
+                            <Button type="submit" :disabled="form.processing">
+                                Create Banner
+                            </Button>
+                        </div>
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
+    </AppLayout>
+</template>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SponsorAds Embed Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .ad-container {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .ad-container::before {
+            content: attr(data-label);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .ad-container.loading::after {
+            content: 'Loading ad...';
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .sidebar {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        .sidebar h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #764ba2;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #a0aec0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .code-block code {
+            color: #68d391;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 SponsorAds Embed Demo</h1>
+            <p>Placement-based banner advertising system</p>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>Welcome to SponsorAds</h2>
+                <p>
+                    This page demonstrates the SponsorAds embed system. The script automatically 
+                    detects placement containers and loads the appropriate banners from the API.
+                </p>
+                <p>
+                    Each ad placement is identified by a unique placement ID. The system supports 
+                    multiple placements on a single page, automatic impression tracking, and click tracking.
+                </p>
+
+                <!-- Homepage Banner Ad -->
+                <div class="ad-container loading sponsor-ad" data-placement="homepage" data-label="Homepage Placement"></div>
+            </div>
+
+            <div class="section">
+                <h2>How It Works</h2>
+                <p>
+                    The embed script is incredibly simple to use. Just add the script tag to your page 
+                    and insert placement containers wherever you want ads to appear.
+                </p>
+
+                <div class="code-block">
+                    <code>&lt;!-- Add the embed script --&gt;</code><br>
+                    <code>&lt;script src="https://d1djuuv7ufovj8.cloudfront.net/sponsor-ads.min.js"&gt;&lt;/script&gt;</code><br><br>
+                    <code>&lt;!-- Add placement containers --&gt;</code><br>
+                    <code>&lt;div class="sponsor-ad" data-placement="homepage"&gt;&lt;/div&gt;</code><br>
+                    <code>&lt;div class="sponsor-ad" data-placement="sidebar"&gt;&lt;/div&gt;</code><br>
+                    <code>&lt;div class="sponsor-ad" data-placement="footer"&gt;&lt;/div&gt;</code>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="main-content">
+                    <div class="section">
+                        <h2>Main Content Area</h2>
+                        <p>
+                            This is the main content area of the page. Ads can be placed anywhere 
+                            within your content flow. The script handles everything automatically.
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod 
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                            quis nostrud exercitation ullamco laboris.
+                        </p>
+
+                        <!-- Header Banner Ad -->
+                        <div class="ad-container loading sponsor-ad" data-placement="header" data-label="Header Placement"></div>
+
+                        <p>
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+                            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <h3>Sidebar</h3>
+                    <p>
+                        Sidebar content with ads can be placed here. The placement system ensures 
+                        the right ads appear in the right locations.
+                    </p>
+
+                    <!-- Sidebar Banner Ad -->
+                    <div class="ad-container loading sponsor-ad" data-placement="sidebar" data-label="Sidebar Placement"></div>
+
+                    <h3 style="margin-top: 30px;">Features</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Automatic ad loading</li>
+                        <li>Impression tracking</li>
+                        <li>Click tracking</li>
+                        <li>Redis caching</li>
+                        <li>Lazy loading support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Advanced Features</h2>
+                <p>
+                    The embed script includes several advanced features:
+                </p>
+                <ul style="margin-left: 40px; margin-top: 10px; margin-bottom: 20px;">
+                    <li><strong>Intersection Observer:</strong> Tracks impressions only when ads are visible</li>
+                    <li><strong>Automatic Retry:</strong> Retries failed API requests with exponential backoff</li>
+                    <li><strong>Dynamic Loading:</strong> Detects dynamically added placement containers</li>
+                    <li><strong>Manual Control:</strong> Expose window.SponsorAds API for manual reload</li>
+                </ul>
+
+                <div class="code-block">
+                    <code>// Manually reload all ads</code><br>
+                    <code>window.SponsorAds.reload();</code><br><br>
+                    <code>// Access configuration</code><br>
+                    <code>console.log(window.SponsorAds.config);</code>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <!-- Footer Banner Ad -->
+            <div class="ad-container loading sponsor-ad" data-placement="footer" data-label="Footer Placement" style="margin-bottom: 20px;"></div>
+            
+            <p>&copy; 2026 SponsorAds MVP. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                Powered by Laravel, Inertia.js, and Vue.js
+            </p>
+        </footer>
+    </div>
+
+    <!-- SponsorAds Embed Script (API URL from .env) -->
+    <script src="http://127.0.0.1:8000/js/sponsor-ads.min.js"></script>
+
+    <!-- Demo: Log when ads are loaded -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎯 SponsorAds Demo Page Loaded');
+            console.log('📍 Looking for ad placements...');
+            
+            // Remove loading state after a delay
+            setTimeout(function() {
+                document.querySelectorAll('.ad-container.loading').forEach(function(el) {
+                    el.classList.remove('loading');
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
