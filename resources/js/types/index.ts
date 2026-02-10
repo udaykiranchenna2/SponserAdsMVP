@@ -20,9 +20,9 @@ export interface Banner {
     image_url: string;
     target_url: string;
     link_text: string | null;
+    placement: string | null;
     status: 'active' | 'inactive';
     status_label: string;
-    embed_code: string;
     created_at: string;
 }
 

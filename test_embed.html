@@ -173,25 +173,10 @@
                 </p>
 
                 <!-- Homepage Banner Ad -->
-                <div class="ad-container loading sponsor-ad" data-placement="homepage" data-label="Homepage Placement"></div>
+                <div class="ad-container loading sponsor-ad" data-placement="homepage-bottom" data-label="Homepage Placement"></div>
             </div>
 
-            <div class="section">
-                <h2>How It Works</h2>
-                <p>
-                    The embed script is incredibly simple to use. Just add the script tag to your page 
-                    and insert placement containers wherever you want ads to appear.
-                </p>
-
-                <div class="code-block">
-                    <code>&lt;!-- Add the embed script --&gt;</code><br>
-                    <code>&lt;script src="https://d1djuuv7ufovj8.cloudfront.net/sponsor-ads.min.js"&gt;&lt;/script&gt;</code><br><br>
-                    <code>&lt;!-- Add placement containers --&gt;</code><br>
-                    <code>&lt;div class="sponsor-ad" data-placement="homepage"&gt;&lt;/div&gt;</code><br>
-                    <code>&lt;div class="sponsor-ad" data-placement="sidebar"&gt;&lt;/div&gt;</code><br>
-                    <code>&lt;div class="sponsor-ad" data-placement="footer"&gt;&lt;/div&gt;</code>
-                </div>
-            </div>
+            
 
             <div class="grid">
                 <div class="main-content">
@@ -280,12 +265,7 @@
             console.log('🎯 SponsorAds Demo Page Loaded');
             console.log('📍 Looking for ad placements...');
             
-            // Remove loading state after a delay
-            setTimeout(function() {
-                document.querySelectorAll('.ad-container.loading').forEach(function(el) {
-                    el.classList.remove('loading');
-                });
-            }, 2000);
+            // Loading state is handled automatically by the script
         });
     </script>
 </body>

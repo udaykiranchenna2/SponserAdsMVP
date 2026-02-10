@@ -18,6 +18,7 @@ const props = defineProps<{
 
 const form = useForm({
     title: props.banner.title,
+    placement: props.banner.placement || '',
     target_url: props.banner.target_url,
     link_text: props.banner.link_text || '',
     status: props.banner.status,
@@ -69,6 +70,16 @@ const handleImageChange = (e: Event) => {
                             <Label for="title">Title <span class="text-destructive">*</span></Label>
                             <Input id="title" v-model="form.title" placeholder="e.g. Summer Sale 2024" required />
                             <InputError :message="form.errors.title" />
+                        </div>
+
+                        <!-- Placement -->
+                        <div class="space-y-2">
+                            <Label for="placement">Placement</Label>
+                            <Input id="placement" v-model="form.placement" placeholder="e.g. homepage-top, sidebar" />
+                            <p class="text-[0.8rem] text-muted-foreground">
+                                Use this key in your HTML: data-placement="homepage-top"
+                            </p>
+                            <InputError :message="form.errors.placement" />
                         </div>
 
                         <!-- Target URL -->

@@ -16,6 +16,7 @@ class CreateBanner
      */
     public function execute(
         string $title,
+        ?string $placement,
         string $targetUrl,
         ?string $linkText,
         BannerStatus $status,
@@ -26,6 +27,7 @@ class CreateBanner
 
         $banner = Banner::create([
             'title' => $title,
+            'placement' => $placement,
             'target_url' => $targetUrl,
             'link_text' => $linkText,
             'status' => $status,

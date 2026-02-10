@@ -43,23 +43,31 @@ const copyEmbedCode = (code: string) => {
                             <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                                 <th
                                     class="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[120px]">
-                                    Image</th>
+                                    Image
+                                </th>
+                                <th
+                                    class="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[150px]">
+                                    Placement
+                                </th>
                                 <th
                                     class="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[200px]">
-                                    Title</th>
+                                    Title
+                                </th>
                                 <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Target
                                     URL</th>
                                 <th
                                     class="h-12 px-4 text-left align-middle font-medium text-muted-foreground w-[100px]">
-                                    Status</th>
+                                    Status
+                                </th>
                                 <th
                                     class="h-12 px-4 text-right align-middle font-medium text-muted-foreground override:w-[100px]">
-                                    Actions</th>
+                                    Actions
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="[&_tr:last-child]:border-0">
                             <tr v-if="banners.data.length === 0">
-                                <td colspan="5" class="p-4 text-center text-muted-foreground">
+                                <td colspan="6" class="p-4 text-center text-muted-foreground">
                                     No banners found.
                                 </td>
                             </tr>
@@ -73,6 +81,10 @@ const copyEmbedCode = (code: string) => {
                                             class="flex h-full w-full items-center justify-center bg-secondary text-xs text-muted-foreground">
                                             No Img</div>
                                     </div>
+                                </td>
+                                <td class="p-4 align-middle font-medium">
+                                    <Badge variant="outline" class="font-mono text-xs">{{ banner.placement || 'default'
+                                        }}</Badge>
                                 </td>
                                 <td class="p-4 align-middle font-medium">
                                     {{ banner.title }}
@@ -91,11 +103,6 @@ const copyEmbedCode = (code: string) => {
                                 </td>
                                 <td class="p-4 align-middle text-right">
                                     <div class="flex items-center justify-end gap-2">
-                                        <Button variant="ghost" size="icon" @click="copyEmbedCode(banner.embed_code)"
-                                            title="Copy Embed Code">
-                                            <Code class="h-4 w-4" />
-                                            <span class="sr-only">Copy Embed Code</span>
-                                        </Button>
                                         <Button variant="ghost" size="icon" :as="Link" :href="edit.url(banner.id)">
                                             <Pencil class="h-4 w-4" />
                                             <span class="sr-only">Edit</span>

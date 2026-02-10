@@ -28,6 +28,7 @@ class StoreBannerRequest extends FormRequest
             'image' => ['required', 'image', 'max:5120'], // 5MB max
             'target_url' => ['required', 'url', 'max:2048'],
             'link_text' => ['nullable', 'string', 'max:255'],
+            'placement' => ['nullable', 'string', 'max:255'],
             'status' => ['required', Rule::enum(BannerStatus::class)],
         ];
     }

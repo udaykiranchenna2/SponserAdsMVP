@@ -18,6 +18,7 @@ class UpdateBanner
     public function execute(
         Banner $banner,
         string $title,
+        ?string $placement,
         string $targetUrl,
         ?string $linkText,
         BannerStatus $status,
@@ -25,6 +26,7 @@ class UpdateBanner
     ): Banner {
         $data = [
             'title' => $title,
+            'placement' => $placement,
             'target_url' => $targetUrl,
             'link_text' => $linkText,
             'status' => $status,

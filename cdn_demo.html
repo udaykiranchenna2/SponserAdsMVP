@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SponsorAds - CDN Example</title>
+    <title>SponsorAds - Professional Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-body: #f0f4f8;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent: #0ea5e9; /* Sky 500 */
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,238 +25,264 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            /* Subtle mesh gradient background */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(216, 241, 255, 0.8) 0%, transparent 20%),
+                radial-gradient(circle at 90% 10%, rgba(230, 240, 255, 0.8) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(240, 245, 255, 0.5) 0%, transparent 50%);
+            color: var(--text-main);
             min-height: 100vh;
-            padding: 20px;
+            line-height: 1.6;
+            padding: 2rem;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+        }
+
+        /* Glass Component */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
             text-align: center;
+            margin-bottom: 3.5rem;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.03em;
+            color: #0f172a;
         }
 
-        .cdn-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #667eea;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
-        }
-
-        .ad-container {
-            background: #f8f9fa;
-            border: 2px dashed #dee2e6;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .ad-container::before {
-            content: attr(data-label);
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .code-block {
-            background: #2d3748;
-            color: #a0aec0;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .code-block code {
-            color: #68d391;
-        }
-
-        .highlight {
-            background: #ffd700;
-            color: #2d3748;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: bold;
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            font-weight: 400;
         }
 
         .grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            margin-top: 40px;
+            gap: 2rem;
         }
 
-        .sidebar {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 8px;
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #334155;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 1.25rem;
+            background: var(--accent);
+            border-radius: 2px;
+            margin-right: 0.75rem;
         }
 
-        .sidebar h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #764ba2;
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        /* Ad Container Styling */
+        .sponsor-ad {
+            background: rgba(241, 245, 249, 0.5);
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .sponsor-ad:hover {
+            border-color: var(--accent);
+            background: rgba(241, 245, 249, 0.8);
+        }
+
+        .sponsor-ad::before {
+            content: attr(data-label);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            color: var(--text-muted);
+            padding: 0 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Loading State */
+        .sponsor-ad.loading::after {
+            content: 'Waiting for Ad...';
+            color: #94a3b8;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.25rem;
+            height: 1.25rem;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            font-size: 0.7rem;
         }
 
         footer {
-            background: #2d3748;
-            color: white;
-            padding: 30px;
             text-align: center;
+            margin-top: 4rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            border-radius: 9999px;
+            background: white;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         @media (max-width: 768px) {
             .grid {
                 grid-template-columns: 1fr;
             }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .glass-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <header>
-            <h1>🎯 SponsorAds CDN Demo</h1>
-            <div class="cdn-badge">
-                ⚡ Powered by CloudFront CDN
-            </div>
+            <div class="badge">Live Production Demo</div>
+            <h1>SponsorAds Platform</h1>
+            <p class="subtitle">Next-generation ad delivery infrastructure powered by CloudFront</p>
         </header>
 
-        <div class="content">
-            <div class="section">
-                <h2>Production-Ready CDN Implementation</h2>
-                <p>
-                    This page demonstrates the SponsorAds embed system using the 
-                    <span class="highlight">CloudFront CDN</span> for global, high-performance delivery.
-                </p>
+        <!-- Top Full Width Ad -->
+        <div class="glass-card">
+            <h2>Header Placement</h2>
+            <div class="sponsor-ad loading" data-placement="header" data-label="Header Banner"></div>
+        </div>
 
-               
+        <div class="grid">
+            <!-- Main Content -->
+            <main>
+                <div class="glass-card">
+                    <h2>Content Integration</h2>
+                    <p>
+                        This section demonstrates how seamlessly ads integrate into a modern, light-themed 
+                        content layout. The glassmorphism effect adds depth while maintaining readability.
+                    </p>
+                    
+                    <div class="sponsor-ad loading" data-placement="homepage" data-label="In-Feed Banner"></div>
 
-                <!-- Homepage Banner Ad -->
-                <div class="ad-container sponsor-ad" data-placement="homepage" data-label="Homepage Placement"></div>
-            </div>
+                    <p>
+                        Our placement-based system ensures that ads are only loaded when required, 
+                        optimizing page performance and user experience metrics.
+                    </p>
+                </div>
+            </main>
 
-            <div class="section">
-                <h2>CDN Benefits</h2>
-                <ul style="margin-left: 40px; line-height: 2;">
-                    <li>⚡ <strong>Global Edge Locations</strong> - Fast delivery worldwide</li>
-                    <li>🔒 <strong>HTTPS Enabled</strong> - Secure content delivery</li>
-                    <li>📦 <strong>Gzip Compression</strong> - Even smaller file size</li>
-                    <li>🚀 <strong>High Availability</strong> - 99.99% uptime SLA</li>
-                    <li>💾 <strong>Browser Caching</strong> - Reduced bandwidth usage</li>
-                </ul>
-            </div>
-
-            <div class="grid">
-                <div class="main-content">
-                    <div class="section">
-                        <h2>Implementation Example</h2>
-                        <p>
-                            The script is now served from CloudFront CDN, ensuring fast load times 
-                            for users around the world. Simply add the CDN URL to your website.
-                        </p>
-
-                        <!-- Header Banner Ad -->
-                        <div class="ad-container sponsor-ad" data-placement="header" data-label="Header Placement"></div>
-
-                        <p style="margin-top: 20px;">
-                            The embed script automatically detects all placement containers and 
-                            loads the appropriate banners. No additional configuration needed!
-                        </p>
+            <!-- Sidebar -->
+            <aside>
+                <div class="glass-card">
+                    <h2>Sidebar</h2>
+                    <p>Ideal for square or vertical ad units.</p>
+                    <div class="sponsor-ad loading" data-placement="sidebar" data-label="Sidebar Widget"></div>
+                    
+                    <div style="margin-top: 2.5rem;">
+                        <h2>Key Benefits</h2>
+                        <ul class="features-list">
+                            <li>Global CDN Delivery</li>
+                            <li>Instant Loading</li>
+                            <li>Secure (HTTPS)</li>
+                            <li>Zero Layout Shift</li>
+                        </ul>
                     </div>
                 </div>
+            </aside>
+        </div>
 
-                <div class="sidebar">
-                    <h3>Quick Stats</h3>
-                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
-                        <li><strong>Script Size:</strong> 3.20 KB</li>
-                        <li><strong>CDN:</strong> CloudFront</li>
-                        <li><strong>Compression:</strong> Gzip</li>
-                        <li><strong>Protocol:</strong> HTTPS</li>
-                    </ul>
-
-                    <!-- Sidebar Banner Ad -->
-                    <div class="ad-container sponsor-ad" data-placement="sidebar" data-label="Sidebar Placement" style="margin-top: 20px;"></div>
-                </div>
-            </div>
-
+        <!-- Footer Ad -->
+        <div class="glass-card">
+            <h2>Footer Placement</h2>
+            <div class="sponsor-ad loading" data-placement="footer" data-label="Footer Banner"></div>
         </div>
 
         <footer>
-            <!-- Footer Banner Ad -->
-            <div class="ad-container sponsor-ad" data-placement="footer" data-label="Footer Placement" style="margin-bottom: 20px;"></div>
-            
-            <p>&copy; 2026 SponsorAds MVP. All rights reserved.</p>
-            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
-                Served via CloudFront CDN | Powered by Laravel & Vue.js
-            </p>
+            <p>&copy; 2026 SponsorAds MVP. Enterprise-grade Ad Delivery.</p>
         </footer>
     </div>
 
-    <!-- SponsorAds Configuration -->
+    <!-- SponsorAds Script -->
+    <script src="https://d1djuuv7ufovj8.cloudfront.net/sponsor-ads.min_live.js"></script>
+
     <script>
-        // Configure your API endpoint
-    </script>
-
-    <!-- Load SponsorAds from CloudFront CDN -->
-    <script src="http://127.0.0.1:8000/js/sponsor-ads.min.js"></script>
-
-
-    <!-- Demo: Console logging -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎯 SponsorAds CDN Demo Loaded');
-            console.log('📍 CDN URL: https://d1djuuv7ufovj8.cloudfront.net/sponsor-ads.min_new.js');
-            console.log('⚡ Script loaded from CloudFront edge location');
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('SponsorAds: Light Mode Demo Initialized');
         });
     </script>
+
 </body>
 </html>

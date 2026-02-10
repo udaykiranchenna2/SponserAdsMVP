@@ -201,6 +201,7 @@
     function renderBanner(element, banner) {
         // Mark as loaded
         element.setAttribute(CONFIG.loadedAttribute, 'true');
+        element.classList.remove('loading');
 
         // Clear existing content
         element.innerHTML = '';
@@ -263,6 +264,7 @@
                 console.warn(`[SponsorAds] No banner found for placement: ${placement}`);
                 elements.forEach(element => {
                     element.setAttribute(CONFIG.loadedAttribute, 'true');
+                    element.classList.remove('loading');
                 });
             }
         });

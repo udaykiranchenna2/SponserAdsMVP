@@ -44,6 +44,7 @@ class BannerController extends Controller
 
         $createBanner->execute(
             $validated['title'],
+            $validated['placement'] ?? null,
             $validated['target_url'],
             $validated['link_text'] ?? null,
             BannerStatus::from($validated['status']),
@@ -81,6 +82,7 @@ class BannerController extends Controller
         $updateBanner->execute(
             $banner,
             $validated['title'],
+            $validated['placement'] ?? null,
             $validated['target_url'],
             $validated['link_text'] ?? null,
             BannerStatus::from($validated['status']),

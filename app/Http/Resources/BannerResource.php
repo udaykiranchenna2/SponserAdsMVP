@@ -22,9 +22,10 @@ class BannerResource extends JsonResource
             'image_url' => $this->image_path ? Storage::url($this->image_path) : null,
             'target_url' => $this->target_url,
             'link_text' => $this->link_text,
+            'placement' => $this->placement,
             'status' => $this->status->value,
             'status_label' => $this->status->label(),
-            'embed_code' => app(\App\Actions\GenerateEmbedCode::class)->execute($this->resource),
+            // 'embed_code' => app(\App\Actions\GenerateEmbedCode::class)->execute($this->resource),
             'created_at' => $this->created_at->toIso8601String(),
         ];
     }
