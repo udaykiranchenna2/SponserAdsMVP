@@ -35,11 +35,7 @@ Ensure you have the following installed on your local machine:
     ```
 
 4.  **Database Setup:**
-    Create the SQLite database file:
-
-    ```bash
-    touch database/database.sqlite
-    ```
+    Create the database connection:
 
     Migrate the database:
 
