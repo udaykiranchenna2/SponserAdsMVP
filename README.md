@@ -78,21 +78,12 @@ php artisan key:generate
 
 By default, this project is configured to use **SQLite**.
 
-1.  Create the SQLite database file (if it doesn't exist):
-
-    ```bash
-    touch database/database.sqlite
-    ```
+1.  Create database connection:
 
 2.  Run the database migrations:
 
     ```bash
     php artisan migrate
-    ```
-
-3.  (Optional) Seed the database with test data:
-    ```bash
-    php artisan db:seed
     ```
 
 ### 4. Running the Application
